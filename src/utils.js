@@ -21,15 +21,15 @@ export const getAngleBase = (engine) => {
     return hookAngle(successCount, gameScore)
   }
   if (engine.getVariable(constant.hardMode)) {
-    return 90
+    return 50
   }
   switch (true) {
-    case successCount < 10:
+    case successCount < 40:
       return 30
-    case successCount < 20:
-      return 60
+    case successCount < 80:
+      return 50
     default:
-      return 80
+      return 50
   }
 }
 
@@ -46,20 +46,20 @@ export const getSwingBlockVelocity = (engine, time) => {
       hard = 0
       break
     case successCount < 10:
-      hard = 1
-      break
-    case successCount < 20:
-      hard = 0.8
+      hard = 0.4
       break
     case successCount < 30:
-      hard = 0.7
+      hard = 0.5
+      break
+    case successCount < 60:
+      hard = 0.6
       break
     default:
-      hard = 0.74
+      hard = 0.6
       break
   }
   if (engine.getVariable(constant.hardMode)) {
-    hard = 1.1
+    hard = 0.6
   }
   return Math.sin(time / (200 / hard))
 }
